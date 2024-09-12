@@ -48,12 +48,6 @@ struct ContentView: View {
     var actualSleepMinutes: Int {
         Int(round((actualSleep / 60 / 60).truncatingRemainder(dividingBy: 1) * 60))
     }
-    
-    var sleepPercentageIncrease: Double {
-        let final = actualSleep
-        let initial = sleepAmount * 3600
-        return (final - initial) / initial
-    }
         
     var body: some View {
         NavigationStack {
@@ -78,7 +72,7 @@ struct ContentView: View {
                     Text(sleepTime.formatted(date: .omitted, time: .shortened))
                         .font(.largeTitle)
                     
-                    Text("You will be sleeping for \(actualSleepHours) hours and \(actualSleepMinutes) minutes, which is \(actualSleepHours == Int(sleepAmount) ? "" : "\(actualSleepHours - Int(sleepAmount)) hours and ")\(actualSleepMinutes) minutes more than what you want to get, or a \(sleepPercentageIncrease.formatted(.percent)) increase.")
+                    Text("You will be sleeping for \(actualSleepHours) hours and \(actualSleepMinutes) minutes, which is around \(actualSleepHours == Int(sleepAmount) ? "" : "\(actualSleepHours - Int(sleepAmount)) hours and ")\(actualSleepMinutes) minutes more than what you want to get.")
                 }
             }
             .navigationTitle("BetterRest")
